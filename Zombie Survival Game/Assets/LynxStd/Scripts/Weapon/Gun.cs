@@ -53,6 +53,8 @@ namespace LynxStd
             get { return _renderer; }
         }
 
+        public GunStats gunStats;
+
         [Tooltip("Name of the gun to be display on the HUD.")]
         public string Name = "Gun";
 
@@ -60,9 +62,6 @@ namespace LynxStd
         public float Zoom = 0;
 
         public Sprite iconGun;
-
-        [Tooltip("Sprite that's displayed when zooming in.")]
-        public Sprite Scope;
 
         [Tooltip("Rate of fire in bullets per second.")]
         [Range(0, 1000)]
@@ -263,6 +262,17 @@ namespace LynxStd
 
         private void Awake()
         {
+            Name = gunStats.nameGun;
+            Rate = gunStats.fireRateGun;
+            Damage = gunStats.damageGun;
+            ClipSize = gunStats.clipSizeGun;
+            Clip = gunStats.clipGun;
+
+            RecoilSettings.Strength = gunStats.recoilStrength;
+            RecoilSettings.AttackTime = gunStats.recoilAttackTime;
+            RecoilSettings.DecayTime = gunStats.recoilDecayTime;
+            RecoilSettings.Limit = gunStats.recoilLimit;
+
             _renderer = GetComponent<Renderer>();
         }
 

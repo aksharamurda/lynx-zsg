@@ -17,11 +17,6 @@ namespace LynxStd
             get { return _motor.IsAlive && ZoomInput && _motor.IsAiming; }
         }
 
-        public bool IsScoped
-        {
-            get { return IsZooming && _motor.Gun != null && _motor.Gun.Scope != null; }
-        }
-
         [Tooltip("Is the character always aiming in camera direction when not in cover.")]
         public bool AlwaysAim = false;
 
@@ -30,21 +25,6 @@ namespace LynxStd
 
         [Tooltip("Time in seconds to keep the gun down when starting to move.")]
         public float NoAimSustain = 0.14f;
-
-        [Tooltip("Degrees to add when aiming a grenade vertically.")]
-        public float ThrowAngleOffset = 30;
-
-        [Tooltip("How high can the player throw the grenade.")]
-        public float MaxThrowAngle = 45;
-
-        [Tooltip("Prefab to instantiate to display grenade explosion preview.")]
-        public GameObject ExplosionPreview;
-
-        [Tooltip("Prefab to instantiate to display grenade path preview.")]
-        public GameObject PathPreview;
-
-        [Tooltip("Scope object and component that's enabled and maintained when using scope.")]
-        public Image Scope;
 
         [HideInInspector]
         public bool FireInput;
@@ -178,17 +158,7 @@ namespace LynxStd
                 SendMessage("OnUnzoom", SendMessageOptions.DontRequireReceiver);
 
             _wasZooming = ZoomInput;
-
-            if (Scope != null)
-            {
-                if (Scope.gameObject.activeSelf != IsScoped)
-                {
-                    Scope.gameObject.SetActive(IsScoped);
-
-                    if (Scope.gameObject.activeSelf)
-                        Scope.sprite = _motor.Gun.Scope;
-                }
-            }
+            
         }
 
         private void updateMovement()

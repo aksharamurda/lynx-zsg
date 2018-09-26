@@ -33,9 +33,6 @@ namespace LynxStd
         [Tooltip("Camera settings for all gameplay situations.")]
         public CameraStates States = CameraStates.GetDefault();
 
-        [Tooltip("Layer that's assigned to target objects when using scope. Used for hiding objects.")]
-        public int ScopeLayer = 9;
-
         [HideInInspector]
         public float Horizontal;
 
@@ -63,7 +60,6 @@ namespace LynxStd
 
         private float _stateFOV;
 
-        private bool _wasScoped;
         private Quaternion _scopeOffset;
         private float _scopeHeight;
 
@@ -134,33 +130,7 @@ namespace LynxStd
             var cameraPosition = transformPivot + rotation * _offset;
             var cameraTarget = _motorPosition + _pivot + rotation * Vector3.forward * 100;
 
-            if (Target.Gun != null && Target.IsZooming && Target.Gun.Scope != null)
             {
-                Target.InputLayer(ScopeLayer);
-
-                if (!_wasScoped)
-                {
-                    _scopeHeight = Target.TargetHeight;
-
-                    var origin = Target.transform.position + Vector3.up * _scopeHeight * 0.8f;
-
-                    var target = Util.GetClosestHit(cameraPosition, cameraTarget, 0, null);
-
-                    _scopeOffset = Quaternion.FromToRotation((cameraTarget - origin).normalized, (target - origin).normalized);
-
-                    _wasScoped = true;
-                }
-
-                transform.position = Target.transform.position + Vector3.up * _scopeHeight * 0.8f;
-                Target.FireFrom(transform.position);
-
-                transform.LookAt(_scopeOffset * (cameraTarget - transform.position) + transform.position);
-
-                _scopeHeight = Mathf.Lerp(_scopeHeight, Target.TargetHeight, Time.deltaTime * 6);
-            }
-            else
-            {
-                _wasScoped = false;
 
                 var forward = (cameraTarget - cameraPosition).normalized;
 
@@ -239,7 +209,7 @@ namespace LynxStd
                 state = States.Dead;
                 alphaTarget = 0;
             }
-            else if (controller != null && (controller.IsScoped || controller.IsZooming))
+            else if (controller != null && (controller.IsZooming))
             {
                 if (Target.IsCrouching)
                     state = States.CrouchZoom;
@@ -262,21 +232,10 @@ namespace LynxStd
             if (controller != null && controller.IsZooming && Target != null && Target.Gun != null)
                 fov -= Target.Gun.Zoom;
 
-            var isScoped = controller != null && controller.IsScoped;
+           
             var lerp = Time.deltaTime * 6;
 
-            if (isScoped)
-                alphaTarget = 0;
-
-            if (isScoped || _wasScoped)
-            {
-                _camera.fieldOfView = Mathf.Lerp(_camera.fieldOfView, fov, lerp * 3);
-                lerp = 1.0f;
-            }
-            else
-                _camera.fieldOfView = Mathf.Lerp(_camera.fieldOfView, fov, lerp);
-
-            _wasScoped = isScoped;
+            _camera.fieldOfView = Mathf.Lerp(_camera.fieldOfView, fov, lerp);
 
             _camera.fieldOfView = Mathf.Lerp(_camera.fieldOfView, fov, Time.deltaTime * 6);
             _crosshairAlpha = Mathf.Lerp(_crosshairAlpha, alphaTarget, lerp);

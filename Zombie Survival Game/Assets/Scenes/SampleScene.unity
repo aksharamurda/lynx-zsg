@@ -757,11 +757,6 @@ MonoBehaviour:
   AlwaysAim: 1
   AimSustain: 0.4
   NoAimSustain: 0.14
-  ThrowAngleOffset: 30
-  MaxThrowAngle: 45
-  ExplosionPreview: {fileID: 0}
-  PathPreview: {fileID: 0}
-  Scope: {fileID: 0}
   FireInput: 0
   ZoomInput: 0
   LookTargetInput: {x: 0, y: 0, z: 0}
@@ -1111,10 +1106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1f9d598a1296b4b9fb1dcce3b3c2c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunStats: {fileID: 11400000, guid: 8a4bb70ec25bdda439e0f63eeed40428, type: 2}
   Name: Gun
   Zoom: 0
   iconGun: {fileID: 0}
-  Scope: {fileID: 0}
   Rate: 7
   Distance: 50
   Damage: 10
@@ -1219,7 +1214,7 @@ MonoBehaviour:
   Target: {fileID: 343588255}
   AvoidObstacles: 1
   IsCrosshairEnabled: 1
-  Crosshair: {fileID: 0}
+  Crosshair: {fileID: 2800000, guid: 0f121bf6ed145f443b0e354b531c4898, type: 3}
   CrosshairSize: 0.05
   States:
     Default:
@@ -1237,46 +1232,6 @@ MonoBehaviour:
       Offset: {x: 0.75, y: -0.8, z: -1}
       Orientation: {x: 0, y: 0, z: 0}
       FOV: 60
-    LowCover:
-      Pivot: {x: 0, y: 1.75, z: 0}
-      Offset: {x: 0.5, y: -0.3, z: -1.5}
-      Orientation: {x: 0, y: 0, z: 0}
-      FOV: 60
-    LowCoverGrenade:
-      Pivot: {x: 0, y: 2, z: 0}
-      Offset: {x: 0.23, y: -0.23, z: -2.2}
-      Orientation: {x: 0, y: 0, z: 0}
-      FOV: 60
-    TallCoverLeft:
-      Pivot: {x: 0, y: 2, z: 0}
-      Offset: {x: -0.5, y: -0.3, z: -1.5}
-      Orientation: {x: 0, y: 0, z: 0}
-      FOV: 60
-    TallCoverRight:
-      Pivot: {x: 0, y: 2, z: 0}
-      Offset: {x: 0.5, y: -0.3, z: -1.5}
-      Orientation: {x: 0, y: 0, z: 0}
-      FOV: 60
-    TallCoverBack:
-      Pivot: {x: 0, y: 1.6, z: 0}
-      Offset: {x: 0.65, y: -0.3, z: -1.5}
-      Orientation: {x: 0, y: 0, z: 0}
-      FOV: 60
-    LeftCorner:
-      Pivot: {x: 0, y: 1.75, z: 0}
-      Offset: {x: -1.5, y: -0.44, z: -2.4}
-      Orientation: {x: 0, y: 0, z: 0}
-      FOV: 60
-    RightCorner:
-      Pivot: {x: 0, y: 1.75, z: 0}
-      Offset: {x: 1.5, y: -0.44, z: -2.4}
-      Orientation: {x: 0, y: 0, z: 0}
-      FOV: 60
-    Climb:
-      Pivot: {x: 0, y: 2, z: 0}
-      Offset: {x: 0.6, y: -0.75, z: -1.75}
-      Orientation: {x: 0, y: 0, z: 0}
-      FOV: 60
     Dead:
       Pivot: {x: 0, y: 0, z: 0}
       Offset: {x: 0, y: 1, z: -2.5}
@@ -1292,37 +1247,6 @@ MonoBehaviour:
       Offset: {x: 0.5, y: -0.78, z: -1}
       Orientation: {x: 0, y: 0, z: 0}
       FOV: 40
-    LowCoverZoom:
-      Pivot: {x: 0, y: 2.2, z: 0}
-      Offset: {x: 0.4, y: -0.4, z: -0.6}
-      Orientation: {x: 0, y: 0, z: 0}
-      FOV: 40
-    LowCoverBackZoom:
-      Pivot: {x: 0, y: 2.15, z: 0}
-      Offset: {x: 0.5, y: -0.8, z: -0.6}
-      Orientation: {x: 0, y: 0, z: 0}
-      FOV: 40
-    LeftLowCornerZoom:
-      Pivot: {x: 0, y: 1.75, z: 0}
-      Offset: {x: -0.55, y: -0.4, z: -0.95}
-      Orientation: {x: 0, y: 0, z: 0}
-      FOV: 40
-    RightLowCornerZoom:
-      Pivot: {x: 0, y: 1.75, z: 0}
-      Offset: {x: 0.8, y: -0.4, z: -0.95}
-      Orientation: {x: 0, y: 0, z: 0}
-      FOV: 40
-    LeftTallCornerZoom:
-      Pivot: {x: 0, y: 1.75, z: 0}
-      Offset: {x: -0.4, y: -0.4, z: -0.95}
-      Orientation: {x: 0, y: 0, z: 0}
-      FOV: 40
-    RightTallCornerZoom:
-      Pivot: {x: 0, y: 1.75, z: 0}
-      Offset: {x: 0.8, y: -0.4, z: -0.95}
-      Orientation: {x: 0, y: 0, z: 0}
-      FOV: 40
-  ScopeLayer: 9
   Horizontal: 0
   Vertical: 0
   _camera: {fileID: 534669904}
