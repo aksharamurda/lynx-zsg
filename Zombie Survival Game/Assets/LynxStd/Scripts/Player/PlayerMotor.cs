@@ -2009,7 +2009,9 @@ namespace LynxStd
                 {
                     _leftHandIK.Target = IK.LeftHand;
                     _leftHandIK.Bones = IK.LeftArmChain.Bones;
-                    _leftHandIK.UpdateMove(hand.position, IK.LeftArmChain.Delay.Get(distance), _leftHandIntensity, IK.LeftArmChain.Iterations);
+                    // ORIGINAL
+                    // _leftHandIK.UpdateMove(hand.position, IK.LeftArmChain.Delay.Get(distance), _leftHandIntensity, IK.LeftArmChain.Iterations);
+                    _leftHandIK.UpdateMove(hand.position, IK.LeftArmChain.Delay.Get(distance), _leftHandIntensity/2, IK.LeftArmChain.Iterations);
                 }
             }
 
